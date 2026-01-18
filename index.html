@@ -1,71 +1,168 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para mi Princesa 👑</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi princesa 👑</title>
+
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+<style>
+body{
+margin:0;
+font-family:Segoe UI,sans-serif;
+background:linear-gradient(135deg,#ff416c,#ff4b2b);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+.heart{
+position:fixed;
+top:-10%;
+font-size:20px;
+animation:fall 8s linear infinite;
+opacity:.7;
+}
+@keyframes fall{
+to{transform:translateY(120vh);}
+}
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+.modal-content{
+background:#ff5a7d;
+padding:25px;
+border-radius:20px;
+width:90%;
+max-width:700px;
+max-height:80vh;
+overflow-y:auto;
+}
+.modal-content.small{max-width:420px;}
+.buttons button{
+margin:10px;
+padding:15px 30px;
+border-radius:30px;
+border:none;
+cursor:pointer;
+font-size:1em;
+animation:pulse 1.8s infinite;
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+}
+</style>
 </head>
+
 <body>
 
-<div class="heart-container"></div>
-
-<section class="hero">
+<section style="padding:50px 20px;">
 <h1>Para mi princesa 👑</h1>
 <h2>Cristel Yissell Mejía Reyes</h2>
 </section>
 
-<section class="carousel">
 <div class="swiper">
 <div class="swiper-wrapper">
-<div class="swiper-slide"><img src="foto1.jpg"></div>
 <div class="swiper-slide">
-<video autoplay muted loop playsinline>
+<img src="foto1.jpg" style="width:300px;height:360px;object-fit:cover;border-radius:20px;">
+</div>
+<div class="swiper-slide">
+<video autoplay muted loop playsinline style="width:300px;height:360px;object-fit:cover;border-radius:20px;">
 <source src="video_carrusel.mp4" type="video/mp4">
 </video>
 </div>
-<div class="swiper-slide"><img src="foto2.jpg"></div>
+<div class="swiper-slide">
+<img src="foto2.jpg" style="width:300px;height:360px;object-fit:cover;border-radius:20px;">
 </div>
 </div>
-</section>
+</div>
 
-<section class="counter">
+<section style="padding:30px;">
 <h2>Nuestro tiempo juntos ⏳</h2>
 <p id="tiempo"></p>
 </section>
 
 <div class="buttons">
-<button onclick="abrirDisculpa()">💔 Discúlpame mi amor</button>
-<button onclick="abrirCarta()">💌 Carta de amor</button>
-<button onclick="abrirVideo()">🎥 Nuestra historia de amor</button>
+<button onclick="openModal('disculpa')">💔 Discúlpame mi amor</button>
+<button onclick="openModal('carta')">💌 Carta de amor</button>
+<button onclick="openModal('video')">🎥 Nuestra historia de amor</button>
 </div>
 
-<div id="modalDisculpa" class="modal"><div class="modal-content scroll">
+<div id="disculpa" class="modal">
+<div class="modal-content">
 <h2>Discúlpame mi amor</h2>
-<p>Disculpas ... (texto completo ya integrado)</p>
-<button onclick="cerrarTodo()">Cerrar</button>
-</div></div>
+<p>Texto de disculpas completo ya incluido</p>
+<button onclick="closeAll()">Cerrar</button>
+</div>
+</div>
 
-<div id="modalCarta" class="modal"><div class="modal-content scroll">
+<div id="carta" class="modal">
+<div class="modal-content">
 <h2>Carta de amor</h2>
-<p>Carta de amor ... (texto completo ya integrado)</p>
-<button onclick="cerrarTodo()">Cerrar</button>
-</div></div>
+<p>Texto de carta completo ya incluido</p>
+<button onclick="closeAll()">Cerrar</button>
+</div>
+</div>
 
-<div id="modalVideo" class="modal"><div class="modal-content small">
+<div id="video" class="modal">
+<div class="modal-content small">
 <h2>Nuestra historia de amor</h2>
-<video controls>
-<source src="images/video.mp4" type="video/mp4">
+<video controls style="width:100%;border-radius:15px;">
+<source src="video.mp4" type="video/mp4">
 </video>
-<button onclick="cerrarTodo()">Cerrar</button>
-</div></div>
+<button onclick="closeAll()">Cerrar</button>
+</div>
+</div>
 
-<footer>
-<p>TE AMOO INFINITAMENTE MI PRINCESA HERMOSA 👑❤️💖</p>
-<p id="mensaje"></p>
+<footer style="padding:30px;background:rgba(0,0,0,.25);">
+<p>TE AMOO INFINITAMENTE MI PRINCESA HERMOSA 👑❤️</p>
+<p id="msg"></p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="script.js"></script>
+<script>
+new Swiper('.swiper',{loop:true,autoplay:{delay:3000}});
+
+const inicio=new Date('2022-09-11T00:00:00');
+setInterval(()=>{
+const a=new Date()-inicio;
+const m=Math.floor(a/60000);
+const h=Math.floor(m/60);
+const d=Math.floor(h/24);
+const mo=Math.floor(d/30);
+const y=Math.floor(mo/12);
+document.getElementById('tiempo').innerText =
+`${y} años · ${mo%12} meses · ${d%30} días · ${h%24} horas · ${m%60} minutos`;
+},1000);
+
+function openModal(id){
+document.getElementById(id).style.display='flex';
+}
+function closeAll(){
+['disculpa','carta','video'].forEach(i=>document.getElementById(i).style.display='none');
+document.getElementById('msg').innerText='Te amoo mi reina, mi princesa hermosa 👑❤️';
+}
+
+setInterval(()=>{
+const h=document.createElement('div');
+h.className='heart';
+h.innerText='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.fontSize=(Math.random()*20+10)+'px';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+},500);
+</script>
+
 </body>
 </html>
