@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi Princesa 👑</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+</head>
+<body>
+
+<div class="heart-container"></div>
+
+<section class="hero">
+<h1>Para mi princesa 👑</h1>
+<h2>Cristel Yissell Mejía Reyes</h2>
+</section>
+
+<section class="carousel">
+<div class="swiper">
+<div class="swiper-wrapper">
+<div class="swiper-slide"><img src="images/foto1.jpg"></div>
+<div class="swiper-slide">
+<video autoplay muted loop playsinline>
+<source src="images/video_carrusel.mp4" type="video/mp4">
+</video>
+</div>
+<div class="swiper-slide"><img src="images/foto2.jpg"></div>
+</div>
+</div>
+</section>
+
+<section class="counter">
+<h2>Nuestro tiempo juntos ⏳</h2>
+<p id="tiempo"></p>
+</section>
+
+<div class="buttons">
+<button onclick="abrirDisculpa()">💔 Discúlpame mi amor</button>
+<button onclick="abrirCarta()">💌 Carta de amor</button>
+<button onclick="abrirVideo()">🎥 Nuestra historia de amor</button>
+</div>
+
+<div id="modalDisculpa" class="modal"><div class="modal-content scroll">
+<h2>Discúlpame mi amor</h2>
+<p>Disculpas ... (texto completo ya integrado)</p>
+<button onclick="cerrarTodo()">Cerrar</button>
+</div></div>
+
+<div id="modalCarta" class="modal"><div class="modal-content scroll">
+<h2>Carta de amor</h2>
+<p>Carta de amor ... (texto completo ya integrado)</p>
+<button onclick="cerrarTodo()">Cerrar</button>
+</div></div>
+
+<div id="modalVideo" class="modal"><div class="modal-content small">
+<h2>Nuestra historia de amor</h2>
+<video controls>
+<source src="images/video.mp4" type="video/mp4">
+</video>
+<button onclick="cerrarTodo()">Cerrar</button>
+</div></div>
+
+<footer>
+<p>TE AMOO INFINITAMENTE MI PRINCESA HERMOSA 👑❤️💖</p>
+<p id="mensaje"></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
